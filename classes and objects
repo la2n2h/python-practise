@@ -1,0 +1,64 @@
+create a class Circle
+
+# Import the library
+```
+import matplotlib.pyplot as plt
+%matplotlib inline 
+```
+# Create a class Circle
+```
+class Cirle(object):
+# constructor
+def __init__(self, radius=3, color='blue')
+  self.radius = radius
+  self.color = color
+
+# method
+  self.radius = self.radius + r
+  return(self.radius)
+
+# method
+def drawCircle(self):
+  plt.gca().add_patch(plt.Circle(0,0), radius = self.radius, fc=self.color)
+  plt.axis('scaled')
+  plot.show()
+
+# Create an object RedCircle
+RedCircle = Circle(10, 'red')
+
+# Find out the methods can be used on the object RedCircle
+
+dir(RedCircle)
+['__class__',
+ '__delattr__',
+ '__dict__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__getstate__',
+ '__gt__',
+ '__hash__',
+ '__init__',
+ '__init_subclass__',
+ '__le__',
+ '__lt__',
+ '__module__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__setattr__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__',
+ '__weakref__',
+ 'add_radius',
+ 'color',
+ 'drawCircle',
+ 'radius']
+
+3 print the object attribute 
