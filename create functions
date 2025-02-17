@@ -1,0 +1,32 @@
+# count 'little" in the string "Mary had a little lamb Little lamb, little lamb Mary had a little lamb.Its fleece was white as snow And everywhere that Mary went Mary went, Mary went Everywhere that Mary went The lamb was sure to go"
+````
+def count(a) :
+    string = ("Mary had a little lamb Little lamb, little lamb Mary had a little lamb.Its fleece was white as snow And everywhere that Mary went Mary went, Mary went Everywhere that Mary went The lamb was sure to go")
+    string_lower = string.lower()
+    words = string_lower.split()
+    count = words.count(a)
+    return (count)
+```
+count('little')
+    4
+
+# create funtion a + 1
+ def print_function(A):
+    for a in A:
+        print(a + '1')
+print_function(['a', 'b', 'c'])
+```
+      a1
+      b1
+      c1
+
+# create function with if
+```
+ def Equation(a,b):
+    c = a + b + 2 * a * b - 1
+    if(c < 0):
+        c = 0
+    return(c) 
+  ```
+          Equation(1,2)
+          6
