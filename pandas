@@ -29,4 +29,126 @@ df= pd.read_csv('filename.csv')
 data = [1, 2, 3, 5, 6]
 s = pd.Series(data)
 print(s)
+```
+0    1
+1    2
+2    3
+3    5
+4    6
+dtype: int64
 
+ # Access the element with label 2 
+ ```
+ print(s[2])
+ ```
+3
+# Access the element at position 3 
+```
+print(s.iloc[3])
+```
+5
+ # Access a range of elements by label
+ ```
+print(s[1:4])
+```
+1    2
+2    3
+3    5
+
+# Creating DataFrames from Dictionaries:
+```
+data = {'Name': ['Alice', 'Bob', 'Charlie', 'David'], 'Age': [25, 30, 45, 60], 'City' : ['New York', 'San Fancisco', 'Los Angles', 'Chicago']}
+df = pd.DataFrame(data)
+print(df)
+```
+      Name  Age          City
+0    Alice   25      New York
+1      Bob   30  San Fancisco
+2  Charlie   45    Los Angles
+3    David   60       Chicago
+# Access the 'Name' column
+```
+print(df['Name'])
+```
+0      Alice
+1        Bob
+2    Charlie
+3      David
+Name: Name, dtype: object
+# Access the third row by position
+```
+print(df.iloc[2])
+```
+Name       Charlie
+Age             45
+City    Los Angles
+Name: 2, dtype: object
+ # Access the second row by label
+ ```
+ print(df.loc[1])
+ ```
+ Name             Bob
+Age               30
+City    San Fancisco
+Name: 1, dtype: object
+ # Select specific columns
+ ```
+ print(df[['Name', 'Age']])
+ ```
+       Name  Age
+0    Alice   25
+1      Bob   30
+2  Charlie   45
+3    David   60
+# Select specific rows
+```
+print(df[1:3])
+```
+      Name  Age          City
+1      Bob   30  San Fancisco
+2  Charlie   45    Los Angles
+
+# Finding Unique Elements
+```
+unique_age = df['Age'].unique()
+print(unique_age)
+```
+[25 30 45 60]
+# condition filtering
+```
+age_above_40 = df[df['Age'] > 40]
+print(age_above_40)
+```
+      Name  Age        City
+2  Charlie   45  Los Angles
+3    David   60     Chicago
+
+# saving data frame
+```
+df.to_csv('trading_data.csv', index=False)
+```
+# Series Attributes and Methods
+Pandas Series come with various attributes and methods to help you manipulate and analyze data effectively. Here are a few essential ones:
+
+values: Returns the Series data as a NumPy array.
+index: Returns the index (labels) of the Series.
+shape: Returns a tuple representing the dimensions of the Series.
+size: Returns the number of elements in the Series.
+mean(), sum(), min(), max(): Calculate summary statistics of the data.
+unique(), nunique(): Get unique values or the number of unique values.
+sort_values(), sort_index(): Sort the Series by values or index labels.
+isnull(), notnull(): Check for missing (NaN) or non-missing values.
+apply(): Apply a custom function to each element of the Series.
+
+# DataFrame Attributes and Methods
+DataFrames provide numerous attributes and methods for data manipulation and analysis, including:
+
+shape: Returns the dimensions (number of rows and columns) of the DataFrame.
+info(): Provides a summary of the DataFrame, including data types and non-null counts.
+describe(): Generates summary statistics for numerical columns.
+head(), tail(): Displays the first or last n rows of the DataFrame.
+mean(), sum(), min(), max(): Calculate summary statistics for columns.
+sort_values(): Sort the DataFrame by one or more columns.
+groupby(): Group data based on specific columns for aggregation.
+fillna(), drop(), rename(): Handle missing values, drop columns, or rename columns.
+apply(): Apply a function to each element, row, or column of the DataFrame.
