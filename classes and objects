@@ -61,4 +61,85 @@ dir(RedCircle)
  'drawCircle',
  'radius']
 
-3 print the object attribute 
+# print the object attributes
+RedCircle.radius
+10
+RedCircle.color
+'red'
+
+# Set the object attribute radius
+
+RedCircle.radius = 1
+RedCircle.radius
+
+1
+
+# Call the method drawCircle
+RedCircle.drawCircle()
+
+# Use method to change the object attribute radius
+
+print('Radius of object:',RedCircle.radius)
+RedCircle.add_radius(2)
+print('Radius of object of after applying the method add_radius(2):',RedCircle.radius)
+RedCircle.add_radius(5)
+print('Radius of object of after applying the method add_radius(5):',RedCircle.radius)
+
+
+The Rectangle Class
+
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+class Rectangle(object):
+    def __init__(self, width, height, color):
+        self.width = width
+        self.height = height
+        self.color = color
+
+    def drawRectangle(self):
+        plt.gca().add_patch(plt.Rectangle((0, 0), self.width, self.height, fc=self.color))
+        plt.axis('scaled')
+        plt.show()
+
+skinnyRectangle= Rectangle(2, 3, 'blue')
+
+skinnyRectangle.width
+skinnyRectangle.height
+skinnyRectangle.color
+
+skinnyRectangle.drawRectangle()
+
+FatYellowRectangle.drawRectangle()
+
+
+# creating a Python program to represent vehicles using a class. Each car should have attributes for maximum speed and mileage.¶
+
+class vehicles (object):
+class vehicle(object):
+    color = "white"
+
+    def __init__(self, speed, mileage):
+        self.speed = speed
+        self.mileage = mileage
+        self.capacity = None 
+
+    def seat_capacity(self, capacity):
+        self.capacity = capacity
+
+    def display_properties(self):
+        print("properties of the vehicle : ")
+        print("color", self.color)
+        print("speed", self.speed)
+        print("mileage", self.mileage)
+        print("seat capacity" , self.capacity)
+
+vehicle1 = vehicle(180, 25)
+vehicle1.seat_capacity(5)
+vehicle1. display_properties()
+
+vehicle2 = vehicle(220, 35)
+vehicle2.seat_capacity(5)
+vehicle2. display_properties()
+
+
