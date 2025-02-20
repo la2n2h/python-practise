@@ -40,4 +40,170 @@ a.dtype
 ```
 dtype('int32')
 
-# 
+# Assign the first element to 100
+```
+a[0] = 100
+a
+```
+array([100,   2,   3,   4,   5])
+
+# Set the fourth element and fifth element to 300 and 400
+```
+a[3:5] = 300, 400
+a
+```
+array([100,   2,   3, 300, 400])
+
+#define the steps in slicing, like this: [start:end:step].
+```
+a[1,5,2]
+```
+array([  2, 300])
+
+# print from 1- 4
+```
+a[:4]
+```
+array([100,   2,   3, 300])
+
+# print from 4 to end of array
+```
+a[4:]
+```
+array([400])
+
+#
+print(arr[1:5:])
+[  2   3 300 400]
+
+# use a list to select more than one specific index. The list select contains several values:
+```
+select = [0,2,3,4]
+b = a[select]
+b
+```
+array([100,   3, 300, 400])
+
+# Assign the specified elements to new value
+```
+select = 1000
+c = a[select]
+c
+```
+# Get the number of dimensions of numpy array
+```
+a.ndim
+```
+1
+
+# size of the array in each dimension
+```
+a.shape
+```
+(5,)
+
+# # Get the mean of numpy array
+```
+a.mean
+```
+161.0
+
+#Get the standard deviation of numpy array
+```
+standard_deviation=a.std()
+standard_deviation
+```
+161.49798760356117
+
+# Get the biggest value in the numpy array
+```
+a.max()
+``` 
+400
+
+# Get the smallest value in the numpy array
+```
+a.min()
+```
+2
+
+#Perform addition operation on the given numpy array arr1 and arr2:
+```
+arr1 = np.array([10, 11, 12, 13, 14, 15])
+arr2 = np.array([20, 21, 22, 23, 24, 25])
+
+arr3 = np.add(arr1, arr2)
+arr3
+```
+array([30, 32, 34, 36, 38, 40])
+
+# subtract the two arrays 
+```
+arr4 = np.subtract(arr1, arr2)
+arr4
+```
+array([-10, -10, -10, -10, -10, -10])
+
+# multiply the two arrays 
+```
+arr5 = np.multiply(arr1, arr2)
+arr5
+```
+array([200, 231, 264, 299, 336, 375])
+
+# divide the two arrays 
+```
+arr6 = np.divide(arr1, arr2)
+arr6
+```
+array([0.5       , 0.52380952, 0.54545455, 0.56521739, 0.58333333,
+       0.6       ])
+
+
+# Calculate the dot product
+```
+arr7 = np.dot(arr1, arr2)
+arr7
+```
+1705
+
+# Add the constant to array
+```
+arr3 = arr1 +1
+arr3
+```
+array([11, 12, 13, 14, 15, 16])
+
+# The value of pi
+```
+np.pi
+```
+3.141592653589793
+
+# Create the numpy array in radians
+```
+x = np.array([0, np.pi/2 , np.pi])
+x
+```
+array([0.        , 1.57079633, 3.14159265])
+
+# Calculate the sin of each elements
+```
+y = np.sin(x)
+y
+```
+array([0.0000000e+00, 1.0000000e+00, 1.2246468e-16])
+
+# Linspace
+a useful function for plotting mathematical functions is linspace. Linspace returns evenly spaced numbers over a specified interval.
+numpy.linspace(start, stop, num = int value)
+start : start of interval range
+stop : end of interval range
+num : Number of samples to generate.
+
+# Makeup a numpy array within [-2, 2] and 5 elements
+```
+np.linspace(-2,2,num=5)
+```
+array([-2., -1.,  0.,  1.,  2.])
+
