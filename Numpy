@@ -207,3 +207,22 @@ np.linspace(-2,2,num=5)
 ```
 array([-2., -1.,  0.,  1.,  2.])
 
+import matplotlib.pyplot as plt
+import numpy as np
+
+def Plotvec2(a, b):
+    ax = plt.axes()  # Create axes for the plot
+    ax.arrow(0, 0, *a, head_width=0.05, color='r', head_length=0.1)  # Add an arrow for vector a
+    plt.text(*(a + 0.1), 'a')  # Add label 'a' near the end of vector a
+    ax.arrow(0, 0, *b, head_width=0.05, color='b', head_length=0.1)  # Add an arrow for vector b
+    plt.text(*(b + 0.1), 'b')  # Add label 'b' near the end of vector b
+    plt.ylim(-2, 2)  # Set the y-axis limits to range from -2 to 2
+    plt.xlim(-2, 2)  # Set the x-axis limits to range from -2 to 2
+
+# Example usage
+a = np.array([-1, 1])
+b = np.array([1, 1])
+
+Plotvec2(a, b)  # Call the function to plot the vectors
+plt.show()  # Display the plot
+
