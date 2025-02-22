@@ -1,0 +1,124 @@
+# Pandas is an API
+
+# import libary
+```
+import pandas as pd
+import matplotlib.pyplot as plt
+```
+
+# create a dictionary, this is just data.
+```
+dict_={'a':[11,21,31],'b':[12,22,32]}
+```
+
+# use the dataframe to communicate with the API.
+```
+df = pd.DataFrame(dict_)
+type(df)
+```
+pandas.core.frame.DataFrame
+
+# displaying the first few rows of the dataframe
+```
+df.head()
+```
+	a	b
+0	11	12
+1	21	22
+2	31	32
+
+#  calculate the mean and return the value
+```
+df.mean()
+```
+a    21.0
+b    22.0
+dtype: float64
+
+# REST APIs
+Rest APIs function by sending a request, the request is communicated via HTTP message. The HTTP message usually contains a JSON file. This contains instructions for what operation we would like the service or resource to perform. In a similar manner, API returns a response, via an HTTP message, this response is usually contained within a JSON.
+
+In this lab, we will use the NBA API to determine how well the Golden State Warriors performed against the Toronto Raptors. We will use the API to determine the number of points the Golden State Warriors won or lost by for each game. So if the value is three, the Golden State Warriors won by three points. Similarly it the Golden State Warriors lost by two points the result will be negative two. The API will handle a lot of the details, such a Endpoints and Authentication.
+
+# install nba_api
+```
+!pip install nba_api
+```
+Collecting nba_api
+  Downloading nba_api-1.7.0-py3-none-any.whl.metadata (5.5 kB)
+Requirement already satisfied: numpy<2.0.0,>=1.22.2 in c:\users\admin\anaconda3\lib\site-packages (from nba_api) (1.26.4)
+Requirement already satisfied: requests<3.0.0,>=2.32.3 in c:\users\admin\anaconda3\lib\site-packages (from nba_api) (2.32.3)
+Requirement already satisfied: charset-normalizer<4,>=2 in c:\users\admin\anaconda3\lib\site-packages (from requests<3.0.0,>=2.32.3->nba_api) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in c:\users\admin\anaconda3\lib\site-packages (from requests<3.0.0,>=2.32.3->nba_api) (3.7)
+Requirement already satisfied: urllib3<3,>=1.21.1 in c:\users\admin\anaconda3\lib\site-packages (from requests<3.0.0,>=2.32.3->nba_api) (2.2.3)
+Requirement already satisfied: certifi>=2017.4.17 in c:\users\admin\anaconda3\lib\site-packages (from requests<3.0.0,>=2.32.3->nba_api) (2025.1.31)
+Downloading nba_api-1.7.0-py3-none-any.whl (280 kB)
+Installing collected packages: nba_api
+Successfully installed nba_api-1.7.0
+
+# import teams in nba_api
+```
+from nba_api.stats.static import teams
+```
+# create function one-dict
+```
+def one_dict(list_dict);
+  keys = list_dict[0].keys()
+  out_dict = {key:[] for key in keys}
+  for dict_ in list_dict:
+    for key, value in dict_.items():
+      out_dict[key].append(value)
+  return out_dict
+```
+
+#returns a list of dictionaries.
+```
+nba_teams = teams.get_team()
+
+# look at the first three elements of the list:
+```
+nba_teams[0:3]
+```
+[{'id': 1610612737,
+  'full_name': 'Atlanta Hawks',
+  'abbreviation': 'ATL',
+  'nickname': 'Hawks',
+  'city': 'Atlanta',
+  'state': 'Georgia',
+  'year_founded': 1949},
+ {'id': 1610612738,
+  'full_name': 'Boston Celtics',
+  'abbreviation': 'BOS',
+  'nickname': 'Celtics',
+  'city': 'Boston',
+  'state': 'Massachusetts',
+  'year_founded': 1946},
+ {'id': 1610612739,
+  'full_name': 'Cleveland Cavaliers',
+  'abbreviation': 'CLE',
+  'nickname': 'Cavaliers',
+  'city': 'Cleveland',
+  'state': 'Ohio',
+  'year_founded': 1970}]
+
+# convert the dictionary to a table
+```
+dict_nba_team = one_dict(nba_teams)
+df_teams = pd.DataFrame(dict_nba_teams)
+df_teams.head()
+```
+id	full_name	abbreviation	nickname	city	state	year_founded
+0	1610612737	Atlanta Hawks	ATL	Hawks	Atlanta	Georgia	1949
+1	1610612738	Boston Celtics	BOS	Celtics	Boston	Massachusetts	1946
+2	1610612739	Cleveland Cavaliers	CLE	Cavaliers	Cleveland	Ohio	1970
+3	1610612740	New Orleans Pelicans	NOP	Pelicans	New Orleans	Louisiana	2002
+4	1610612741	Chicago Bulls	CHI	Bulls	Chicago	Illinois	1966
+
+# sort team name Golden State Warriors 
+```
+df_warriors =df_teams[df_teams['nickname']=='Warriors']
+df_warriors
+```
+id	full_name	abbreviation	nickname	city	state	year_founded
+7	1610612744	Golden State Warriors	GSW	Warriors	Golden State	California	1946
+
