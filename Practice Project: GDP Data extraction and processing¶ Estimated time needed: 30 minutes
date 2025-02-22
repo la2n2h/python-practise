@@ -1,0 +1,100 @@
+# Project Scenario:
+An international firm that is looking to expand its business in different countries across the world has recruited you. You have been hired as a junior Data Engineer and are tasked with creating a script that can extract the list of the top 10 largest economies of the world in descending order of their GDPs in Billion USD (rounded to 2 decimal places), as logged by the International Monetary Fund (IMF).
+The required data seems to be available on the URL mentioned below:
+
+URL: https://web.archive.org/web/20230902185326/https://en.wikipedia.org/wiki/List_of_countries_by_GDP_%28nominal%29
+
+# set up
+# install libraries
+!pip install pandas numpy 
+!pip install lxml
+
+# Importing Required Libraries
+import pandas as pd
+import numpy as np
+
+# Extract the required GDP data from the given URL using Web Scraping.
+URL = 'https://web.archive.org/web/20230902185326/https://en.wikipedia.org/wiki/List_of_countries_by_GDP_%28nominal%29'
+
+# Extract tables from webpage using Pandas. Retain table number 4 as the required dataframe.
+```
+tables =pd.read_html(URL)
+print(f'table qnt: {len(tables)}')
+```
+table qnt: 8
+``
+df_table3 =tables[2]
+```
+	Country/Territory	UN region	IMF[1][13]	World Bank[14]	United Nations[15]
+Country/Territory	UN region	Estimate	Year	Estimate	Year	Estimate	Year
+0	World	—	105568776	2023	100562011	2022	96698005	2021
+1	United States	Americas	26854599	2023	25462700	2022	23315081	2021
+2	China	Asia	19373586	[n 1]2023	17963171	[n 3]2022	17734131	[n 1]2021
+3	Japan	Asia	4409738	2023	4231141	2022	4940878	2021
+4	Germany	Europe	4308854	2023	4072192	2022	4259935	2021
+...	...	...	...	...	...	...	...	...
+209	Anguilla	Americas	—	—	—	—	303	2021
+210	Kiribati	Oceania	248	2023	223	2022	227	2021
+211	Nauru	Oceania	151	2023	151	2022	155	2021
+212	Montserrat	Americas	—	—	—	—	72	2021
+213	Tuvalu	Oceania	65	2023	60	2022	60	2021
+214 rows × 8 columns
+
+
+# Replace the column headers with column numbers
+df_table3.columns = range(df_table3.shape[1])
+df_table3.columns
+
+# Retain columns with index 0 and 2 (name of country and value of GDP quoted by IMF)
+```
+df_table3[[0,2]]
+```
+	0	2
+0	World	105568776
+1	United States	26854599
+2	China	19373586
+3	Japan	4409738
+4	Germany	4308854
+...	...	...
+209	Anguilla	—
+210	Kiribati	248
+211	Nauru	151
+212	Montserrat	—
+213	Tuvalu	65
+214 rows × 2 columns
+
+# Retain the Rows with index 1 to 10, indicating the top 10 economies of the world.
+```
+df_table3.iloc[:11,:]
+```
+	0	1	2	3	4	5	6	7
+0	World	—	105568776	2023	100562011	2022	96698005	2021
+1	United States	Americas	26854599	2023	25462700	2022	23315081	2021
+2	China	Asia	19373586	[n 1]2023	17963171	[n 3]2022	17734131	[n 1]2021
+3	Japan	Asia	4409738	2023	4231141	2022	4940878	2021
+4	Germany	Europe	4308854	2023	4072192	2022	4259935	2021
+5	India	Asia	3736882	2023	3385090	2022	3201471	2021
+6	United Kingdom	Europe	3158938	2023	3070668	2022	3131378	2021
+7	France	Europe	2923489	2023	2782905	2022	2957880	2021
+8	Italy	Europe	2169745	2023	2010432	2022	2107703	2021
+9	Canada	Americas	2089672	2023	2139840	2022	1988336	2021
+10	Brazil	Americas	2081235	2023	1920096	2022	1608981	2021
+
+# Assign column names as "Country" and "GDP (Million USD)"
+dt_table3.Columns = ['Country','Continent', 'GDP_IMF (Million USD)', 'Year','GDP_WB (Million USD)', 'Year', 'GDP_UN (Million USD)', 'Year']
+
+	Country	Continent	GDP_IMF (Million USD)	Year	GDP_WB (Million USD)	Year	GDP_UN (Million USD)	Year
+1	United States	Americas	26854599	2023	25462700	2022	23315081	2021
+2	China	Asia	19373586	[n 1]2023	17963171	[n 3]2022	17734131	[n 1]2021
+3	Japan	Asia	4409738	2023	4231141	2022	4940878	2021
+4	Germany	Europe	4308854	2023	4072192	2022	4259935	2021
+5	India	Asia	3736882	2023	3385090	2022	3201471	2021
+6	United Kingdom	Europe	3158938	2023	3070668	2022	3131378	2021
+7	France	Europe	2923489	2023	2782905	2022	2957880	2021
+8	Italy	Europe	2169745	2023	2010432	2022	2107703	2021
+9	Canada	Americas	2089672	2023	2139840	2022	1988336	2021
+10	Brazil	Americas	2081235	2023	1920096	2022	1608981	2021
+
+#df_table3
+
+
