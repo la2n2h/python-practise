@@ -119,6 +119,62 @@ id	full_name	abbreviation	nickname	city	state	year_founded
 df_warriors =df_teams[df_teams['nickname']=='Warriors']
 df_warriors
 ```
-id	full_name	abbreviation	nickname	city	state	year_founded
+	id	full_name	abbreviation	nickname	city	state	year_founded
 7	1610612744	Golden State Warriors	GSW	Warriors	Golden State	California	1946
+
+# sort ID of warriors
+```
+id_warriors = df_warriors[['id']].values[0][0]
+id_warriors
+```
+1610612744
+
+# import leaguegamefinder from nba.com by make the API call
+```
+from nba_api.stats.endpoints import Leaguegamefinder
+```
+# HTTP request information of Warrior from League Game Finder 
+```
+gamefinder = Leaguegamefinder.Leaguegamefinder(team_id_nullable=id-warriors)
+```
+gamefinder.get_json()
+```
+
+# get information of warriors
+```
+games = gamefinder.get_data_frames()[0]
+games.head()
+```
+	SEASON_ID	TEAM_ID	TEAM_ABBREVIATION	TEAM_NAME	GAME_ID	GAME_DATE	MATCHUP	WL	MIN	PTS	...	FT_PCT	OREB	DREB	REB	AST	STL	BLK	TOV	PF	PLUS_MINUS
+0	22024	1610612744	GSW	Golden State Warriors	0022400805	2025-02-21	GSW @ SAC	W	241	132	...	1.000	11.0	24.0	35.0	40	13	3	12	19	24.0
+1	22024	1610612744	GSW	Golden State Warriors	0022400784	2025-02-13	GSW @ HOU	W	240	105	...	0.889	9.0	33.0	42.0	26	13	6	10	18	7.0
+2	22024	1610612744	GSW	Golden State Warriors	0022400782	2025-02-12	GSW @ DAL	L	239	107	...	0.833	18.0	32.0	50.0	29	9	6	15	16	-4.0
+3	22024	1610612744	GSW	Golden State Warriors	0022400760	2025-02-10	GSW @ MIL	W	238	125	...	0.789	15.0	33.0	48.0	27	16	2	9	23	14.0
+4	22024	1610612744	GSW	Golden State Warriors	0022400745	2025-02-08	GSW @ CHI	W	241	132	...	0.852	16.0	28.0	44.0	34	8	7	14	23	21.0
+5 rows × 28 columns
+
+# create two dataframes, one for the games that the Warriors faced the raptors at home, and the second for away games.
+games_home = games[games['MATCHUP'] =='GSW vs. TOR']
+games_away = games[games['MATCHUP'] =='Gsw @ TOR']
+
+# calculate the mean for the column PLUS_MINUS for the dataframes games_home and  games_away
+```
+games_home['PLUS_MINUS'].mean()
+```
+3.375
+```
+games_away['PLUS_MINUS'].mean()
+```
+-1.7588235294117647
+
+# plot out the PLUS MINUS column for the dataframes games_home and  games_away. We see the warriors played better at home.
+```
+fig, ax = plt.subplots()
+
+games_away.plot(x='GAME_DATE',y='PLUS_MINUS', ax=ax)
+games_home.plot(x='GAME_DATE',y='PLUS_MINUS', ax=ax)
+ax.legend(["away", "home"])
+plt.show()
+```
+
 
