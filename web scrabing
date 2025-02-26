@@ -1,0 +1,83 @@
+```
+!pip install bs4
+!pip install requests pandas html5lib 
+```
+
+```
+from bs4 import BeautifulSoup
+import requests
+```
+``
+%%html
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+<h3><b id='boldest'>Lebron James</b></h3>
+<p> Salary: $ 92,000,000 </p>
+<h3> Stephen Curry</h3>
+<p> Salary: $85,000, 000 </p>
+<h3> Kevin Durant </h3>
+<p> Salary: $73,200, 000</p>
+</body>
+</html>
+
+Lebron James>
+Salary : $ 92,000,000
+
+Stephen Curry
+Salary: $85,000, 000
+
+Kevin Durant
+Salary: $73,200, 000
+
+# store it as a string in the variable HTML
+```
+html="<!DOCTYPE html><html><head><title>Page Title</title></head><body><h3><b id='boldest'>Lebron James</b></h3><p> Salary: $ 92,000,000 </p><h3> Stephen Curry</h3><p> Salary: $85,000, 000 </p><h3> Kevin Durant </h3><p> Salary: $73,200, 000</p></body></html>"
+```
+
+# To parse a document, pass it into the BeautifulSoup constructor. The BeautifulSoup object represents the document as a nested data structure:
+```
+soup =BeautifulSoup(html, 'html5lib')
+
+#use the method prettify() to display the HTML in the nested structure:
+```
+print(soup.prettify())
+```
+
+
+# get the title of the page and the name of the top paid player.
+```
+tag_object = soup.title
+print(tag_object)
+```
+<title>Page Title</title>
+
+```
+
+```
+tag_object=soup.h3
+tag_object
+```
+<h3><b id="boldest">Lebron James</b></h3>
+
+```
+tag_object.parent
+```
+<body><h3><b id="boldest">Lebron James</b></h3><p> Salary: $ 92,000,000 </p><h3> Stephen Curry</h3><p> Salary: $85,000, 000 </p><h3> Kevin Durant </h3><p> Salary: $73,200, 000</p></body>
+
+# convert data into dataframe
+players =[h3 for h3 in soup.find_all("h3")]
+salaries =[p for p in soup.fins_all("p")]
+df = pd.DataFrame({"player": players, "salary": salaries})
+print (df)
+```
+             player                    salary
+0  [[Lebron James]]  [ Salary: $ 92,000,000 ]
+1  [ Stephen Curry]  [ Salary: $85,000, 000 ]
+2  [ Kevin Durant ]   [ Salary: $73,200, 000]
+
+
+
