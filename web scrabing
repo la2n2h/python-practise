@@ -79,5 +79,80 @@ print (df)
 1  [ Stephen Curry]  [ Salary: $85,000, 000 ]
 2  [ Kevin Durant ]   [ Salary: $73,200, 000]
 
+# create html table
+```
+%%html
+<table>
+  <tr>
+    <td id='flight' >Flight No</td>
+    <td>Launch site</td> 
+    <td>Payload mass</td>
+   </tr>
+  <tr> 
+    <td>1</td>
+    <td><a href='https://en.wikipedia.org/wiki/Florida'>Florida</a></td>
+    <td>300 kg</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td><a href='https://en.wikipedia.org/wiki/Texas'>Texas</a></td>
+    <td>94 kg</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td><a href='https://en.wikipedia.org/wiki/Florida'>Florida</a> </td>
+    <td>80 kg</td>
+  </tr>
+</table>
+```
+Flight No	Launch site	Payload mass
+1	Florida	300 kg
+2	Texas	94 kg
+3	Florida	80 kg
+
+# store it as a string in the variable table:
+```
+table="<table><tr><td id='flight' >Flight No</td><td>Launch site</td><td>Payload mass</td></tr><tr><td>1</td><td><a href='https://en.wikipedia.org/wiki/Florida'>Florida</a></td><td>300 kg</td></tr><tr><td>2</td><td><a href='https://en.wikipedia.org/wiki/Texas'>Texas</a></td><td>94 kg</td></tr><tr><td>3</td><td><a href='https://en.wikipedia.org/wiki/Florida'>Florida</a> </td><td>80 kg</td></tr></table>"
+```
+
+```
+table_bs = BeautifulSoup(table, "html.parser")
+```
+
+# find table row
+```
+table_rows=table_bs.find_all('tr')
+table_rows
+```
+
+[<tr><td id="flight">Flight No</td><td>Launch site</td><td>Payload mass</td></tr>,
+ <tr><td>1</td><td><a href="https://en.wikipedia.org/wiki/Florida">Florida</a></td><td>300 kg</td></tr>,
+ <tr><td>2</td><td><a href="https://en.wikipedia.org/wiki/Texas">Texas</a></td><td>94 kg</td></tr>,
+ <tr><td>3</td><td><a href="https://en.wikipedia.org/wiki/Florida">Florida</a> </td><td>80 kg</td></tr>]
+
+# first roow of table
+```
+first_row =table_rows[0]
+first_row
+```
+
+# type of row
+``
+print(type(first_row))
+```
+
+# check cell of frist row
+```
+first_row.td
+```
+<td id="flight">Flight No</td>
+
+
+
+
+
+
+
+
 
 
